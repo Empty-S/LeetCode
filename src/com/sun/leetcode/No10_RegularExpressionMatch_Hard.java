@@ -2,6 +2,18 @@ package com.sun.leetcode;
 
 public class No10_RegularExpressionMatch_Hard {
 
+    /**
+     * 解题思路：从前往后逐一判断当前字符与当前模式是否匹配
+     *          当前字符与当前模式的字符相匹配，结果记为flag；
+     *          若当前模式含*，若flag为false，则跳过当前模式，即当前字符与下一模式匹配；
+     *                      若为true，则匹配下一字符与当前模式；
+     *          若当前模式不含*，若flag为false，则返回false；
+     *                      若flag为true，则匹配下一字符与下一模式；
+     *
+     * @param s 输入字符
+     * @param p 输入模式
+     * @return 返回是否匹配
+     */
     public static boolean isMatch(String s, String p) {
         // System.out.println("s = " + s + ", p = " + p);
         if (s == null || p == null) {

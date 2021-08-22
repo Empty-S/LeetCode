@@ -8,6 +8,13 @@ public class No17_LetterCombinations_Medium {
 
     private final List<String> result = new ArrayList<>();
 
+    /**
+     * 题目：给定电话键盘（2-9）上的一串数字，返回所有可能的字母的组合
+     * 思路：本题难点在于不知道数字长度，因此没办法写死循环层数，通过递归来解决
+     *
+     * @param digits 数字
+     * @return 所有字母组合
+     */
     public List<String> letterCombinations(String digits) {
         if (null == digits || 0 == digits.length()) {
             return new ArrayList<>();

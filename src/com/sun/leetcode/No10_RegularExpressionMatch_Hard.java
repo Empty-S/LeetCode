@@ -3,7 +3,8 @@ package com.sun.leetcode;
 public class No10_RegularExpressionMatch_Hard {
 
     /**
-     * 解题思路：从前往后逐一判断当前字符与当前模式是否匹配
+     * 题目：正则表达式匹配，支持.和*
+     * 思路：从前往后逐一判断当前字符与当前模式是否匹配
      *          当前字符与当前模式的字符相匹配，结果记为flag；
      *          若当前模式含*，若flag为false，则跳过当前模式，即当前字符与下一模式匹配；
      *                      若为true，则匹配下一字符与当前模式；

@@ -1,5 +1,7 @@
 package com.sun.leetcode;
 
+import com.sun.common.ListNode;
+
 public class No19_RemoveNthFromEnd_Medium {
 
     /**
@@ -54,31 +56,4 @@ public class No19_RemoveNthFromEnd_Medium {
 
 }
 
-class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        ListNode idx = this;
-        while (null != idx) {
-            sb.append(idx.val).append(", ");
-            idx = idx.next;
-        }
-        sb.replace(sb.length() - 2, sb.length(), "]");
-        return sb.toString();
-    }
-}

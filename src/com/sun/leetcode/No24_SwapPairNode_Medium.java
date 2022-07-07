@@ -2,7 +2,7 @@ package com.sun.leetcode;
 
 import com.sun.common.ListNode;
 
-public class No23_SwapPairNode_Medium {
+public class No24_SwapPairNode_Medium {
     /**
      * 题目：给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
      * 思路：相邻节点对互相交换后，其上一个节点的next指针也需要替换
@@ -13,19 +13,19 @@ public class No23_SwapPairNode_Medium {
     public ListNode swapPairs(ListNode head) {
         ListNode first = head;
         ListNode second;
-        ListNode last = null;
+        ListNode previous = null;
         while (first != null && first.next != null) {
             second = first.next;
             // 指针交换
             first.next = second.next;
             second.next = first;
-            if (null == last) {
+            if (null == previous) {
                 head = second;
             } else {
-                last.next = second;
+                previous.next = second;
             }
             // 指针迭代
-            last = first;
+            previous = first;
             first = first.next;
         }
         return head;

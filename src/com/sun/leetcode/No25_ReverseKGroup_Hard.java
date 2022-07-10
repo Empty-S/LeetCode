@@ -7,6 +7,7 @@ public class No25_ReverseKGroup_Hard {
     /**
      * 题目：给定一个链表，每k个节点一组进行翻转，并返回交换后的链表。
      * 思路：以K个为一组，首先遍历出组内第一个和最后一个节点；其次组内遍历，逆序相邻节点
+     *
      * @param head 链表
      * @param k K个节点一组
      * @return 合并后的链表头结点

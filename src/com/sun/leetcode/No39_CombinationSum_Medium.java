@@ -17,30 +17,26 @@ public class No39_CombinationSum_Medium {
      */
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        // 排序后找到 <= target的位置
         Arrays.sort(candidates);
-        int maxIdx = Arrays.binarySearch(candidates, target);
-        maxIdx = maxIdx >= 0 ? maxIdx : Math.abs(maxIdx + 1) - 1;
-        combinationSumRecurse(candidates, maxIdx, target, result, new ArrayList<>());
+        combinationSumRecurse(candidates, candidates.length - 1, target, result, new ArrayList<>());
         return result;
     }
 
-    private static void combinationSumRecurse(int[] candidates, int idx, int target, List<List<Integer>> result, List<Integer> tmpResult) {
+    private static void combinationSumRecurse(int[] candidates, int idx, int target, List<List<Integer>> result, List<Integer> path) {
+        // 若目标容量为 0，则表示当前物品组合已满足条件，则加入结果集
+        if (target == 0) {
+            result.add(new ArrayList<>(path));
+        }
         for (int i = idx; i >= 0; i--) {
             // 背包总容量减去当前物品体积，得到剩余容量
             int left = target - candidates[i];
-            if (0 == left) {
-                // 若剩余容量为 0，则表示当前物品组合已满足条件，则加入结果集
-                tmpResult.add(candidates[i]);
-                result.add(new ArrayList<>(tmpResult));
-                tmpResult.remove(tmpResult.size() - 1);
-            } else if (left > 0) {
-                // 若剩余容量 > 0，则表示当前物品体积无法填充剩余容量，则以当前物品继续向下递归
-                tmpResult.add(candidates[i]);
-                combinationSumRecurse(candidates, i, left, result, tmpResult);
-                tmpResult.remove(tmpResult.size() - 1);
-            }
             // 若剩余容量 < 0，则表示当前物品体积 > 背包容量，则尝试更小体积的物品
+            if (left >= 0) {
+                path.add(candidates[i]);
+                // 若剩余容量 > 0，则表示当前物品体积无法填满背包，则以当前物品继续向下递归
+                combinationSumRecurse(candidates, i, left, result, path);
+                path.remove(path.size() - 1);
+            }
         }
     }
 

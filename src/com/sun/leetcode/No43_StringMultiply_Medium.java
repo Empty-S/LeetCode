@@ -10,11 +10,21 @@ public class No43_StringMultiply_Medium {
      *      num1 和 num2 只能由数字组成。
      *      num1 和 num2 都不包含任何前导零，除了数字 0本身。
      * 思路：按照乘法计算公式，用乘数的每一位 × 被乘数，最后将每次结果相加
+     * 优化思路：两数相乘的结果长度为 n+m-1 或 n+m，将num1[i] * num2[j]的结果累加至 result[i+j+1]即可（为m+n长度的结果预留一位）
+     *          由于累加后的 result[k] 结果位数可能 >1，因此要从最后一位起处理进位
      *
      * @param num1 被乘数
      * @param num2 乘数
      * @return 结果字符串
      */
+    public static String multiplyOptimize(String num1, String num2) {
+        if (num1.equals("0") || num2.equals("0")) {
+            return "0";
+        }
+        // TODO
+        return null;
+    }
+
     public static String multiply(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) {
             return "0";
@@ -73,8 +83,8 @@ public class No43_StringMultiply_Medium {
     }
 
     public static void main(String[] args) {
-//        System.out.println(add("7775089", "5068790"));
-//        System.out.println(7775089 + 5068790);
+        System.out.println(add("7775089", "5068790"));
+        System.out.println(7775089 + 5068790);
 
         System.out.println(multiply("498828660196", "840477629533"));
         System.out.println(BigInteger.valueOf(498828660196L).multiply(BigInteger.valueOf(840477629533L)));

@@ -18,7 +18,7 @@ public class No42_CatchRain_Hard {
         int result = 0;
         int left = -1;
         int right = -1;
-        int minBound = 0;
+        int minBound;
         for (int i = 0; i < height.length; i++) {
             // 找到左边界：左起第一个高度不为 0 的柱子作为第一个水坑的左边界
             if (left == -1) {
@@ -33,33 +33,32 @@ public class No42_CatchRain_Hard {
                 continue;
             }
             // 找到右边界：除左边界的下一个柱子外的，高度最大（不为 0）的第一个柱子 或 比左边界高的第一个柱子 为右边界
+            int maxHeight = 0;
+            for (int j = i; j < height.length; j++) {
+                maxHeight = Math.max(height[j], maxHeight);
+            }
+            // 按左边界高度为准预估水坑容量，待找到有边界后再计算准确容量
+            int tmpResult = 0;
+            for (int j = i; j < height.length; j++) {
+                tmpResult += (left - height[j]);
+                if (height[j] > height[left] || height[j] == maxHeight) {
+                    right = j;
+                    minBound = Math.min(height[left], height[right]);
+                    tmpResult -= (left - height[j]); // 仅计算左右边界之间的容量，减掉多计入的一次
+                    tmpResult -= (left - minBound) * (j - i); // 若左边界比右边界高，则需减掉多计入的容量
+                    break;
+                }
+            }
             if (right == -1) {
-                int maxHeight = 0;
-                for (int j = i; j < height.length; j++) {
-                    if (height[j] > height[left]) {
-                        right = j;
-                        minBound = Math.min(height[left], height[right]);
-                        break;
-                    }
-                    if (height[j] > maxHeight) {
-                        right = j;
-                        maxHeight = height[j];
-                        minBound = Math.min(height[left], height[right]);
-                    }
-                }
-                if (right == -1) {
-                    return result;
-                }
+                return result;
             }
-            if (i < right && minBound > 0) {
-                // 计算当前水坑的容量
-                result += (minBound - height[i]);
-            } else {
-//                System.out.println("left = " + left + ", right = " + right + ", minBound = " + minBound + ", result = " + result);
-                // 将右边界作为下一个水坑的左边界进行迭代
-                left = right;
-                right = -1;
-            }
+            // 计算当前水坑的容量
+            result += tmpResult;
+            i = right;
+//            System.out.println("left = " + left + ", right = " + right + ", minBound = " + minBound + ", result = " + result);
+            // 将右边界作为下一个水坑的左边界进行迭代
+            left = right;
+            right = -1;
         }
         return result;
     }

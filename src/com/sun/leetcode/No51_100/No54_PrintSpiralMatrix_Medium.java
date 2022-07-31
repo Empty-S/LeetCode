@@ -3,7 +3,7 @@ package com.sun.leetcode.No51_100;
 import java.util.ArrayList;
 import java.util.List;
 
-public class No54_SpiralOrder_Medium {
+public class No54_PrintSpiralMatrix_Medium {
 
     /**
      * 题目：给定一个 m*n 的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。

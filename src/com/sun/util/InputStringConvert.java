@@ -4,14 +4,23 @@ import java.util.Arrays;
 
 public class InputStringConvert {
 
+    public static int[] stringToIntArray(String str) {
+        String[] numArr = str.split(",");
+        int[] nums = new int[numArr.length];
+        for (int i = 0; i < numArr.length; i++) {
+            nums[i] = Integer.parseInt(numArr[i].replaceAll("\\[", "").replaceAll("]", "").trim());
+        }
+        return nums;
+    }
+
     public static int[][] stringToIntMatrix(String str) {
         String[] row = str.split("],\\[");
         int colLen = row[0].split(",").length;
         int[][] matrix = new int[row.length][colLen];
-        for (int i = 0; i< row.length; i++) {
+        for (int i = 0; i < row.length; i++) {
             String[] col = row[i].split(",");
-            for(int j = 0; j< colLen; j++) {
-                matrix[i][j] = Integer.parseInt(col[j].replaceAll("\\[", "").replaceAll("]", ""));
+            for (int j = 0; j < colLen; j++) {
+                matrix[i][j] = Integer.parseInt(col[j].replaceAll("\\[", "").replaceAll("]", "").trim());
             }
         }
         return matrix;

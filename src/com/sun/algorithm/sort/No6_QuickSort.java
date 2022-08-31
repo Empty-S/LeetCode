@@ -29,7 +29,7 @@ public class No6_QuickSort {
     private static int partition(int[] nums, int start, int end) {
         // 基准值选为最后一个，可选取第一、中间、最后三个值中的中间值作为基准值，来避免最坏情况。
         int pivot = nums[end - 1];
-        // 从 start 开始，将比基准值小的数字放置再idx的位置
+        // 从 start 开始，将比基准值小的数字放置在 idx 的位置
         // 当迭代到 end-1 的位置时，基准值会被换到中间位置，因此 if 条件一定要有等号 =
         int idx = start;
         for (int i = start; i < end; i++) {

@@ -10,35 +10,36 @@ public class No33_SearchInRotatedArray_Medium {
      *      例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。
      *      给定旋转后的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。
      *      要求时间复杂度为 O(log n)
-     * 思路：先通过二分查找的方式找到旋转点 k，再根据 target 与两段数组起止值的比较在不同区间内进行二分查找
+     * 思路：先通过二分查找的方式找到原始数组起始位置，再根据 target 与两段数组起止值的比较在不同区间内进行二分查找
      *
      * @param nums   旋转后的数组
      * @param target 要搜索的目标
      * @return 返回位置
      */
     public static int search(int[] nums, int target) {
-        int k = findK(nums);
-        System.out.println(k);
-        if (target <= nums[nums.length - 1]) {
-            int idx = Arrays.binarySearch(nums, k, nums.length, target);
+        int start = findStart(nums);
+//        System.out.println(start);
+        if (target >= nums[start] && target <= nums[nums.length - 1]) {
+            int idx = Arrays.binarySearch(nums, start, nums.length, target);
             return idx < 0 ? -1 : idx;
         } else if (target >= nums[0]) {
-            int idx = Arrays.binarySearch(nums, 0, k, target);
+            int idx = Arrays.binarySearch(nums, 0, start, target);
             return idx < 0 ? -1 : idx;
         } else {
             return -1;
         }
     }
 
-    private static int findK(int[] nums) {
+    private static int findStart(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
+        if (nums[left] < nums[right]) {
+            return 0;
+        }
         int mid;
         while (true) {
             mid = (left + right) / 2;
-            if (nums[left] < nums[right]) {
-                return 0;
-            } else if (nums[left] == nums[mid]) {
+            if (left == mid) {
                 return right;
             } else if (nums[left] > nums[mid]) {
                 right = mid;

@@ -1,6 +1,6 @@
 package com.sun.leetcode.No1_50;
 
-public class No26_RmDupNum_Simple {
+public class No26_RmDuplicatesInSortedArray_Simple {
 
     /**
      * 题目：给定一个升序数组，删除其中重复元素，返回新数组的长度；
@@ -34,7 +34,7 @@ public class No26_RmDupNum_Simple {
 
     public static void main(String[] args) {
         int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        No26_RmDupNum_Simple rmDupNum = new No26_RmDupNum_Simple();
+        No26_RmDuplicatesInSortedArray_Simple rmDupNum = new No26_RmDuplicatesInSortedArray_Simple();
         System.out.println(rmDupNum.removeDuplicates(nums));
     }
 }

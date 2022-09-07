@@ -4,7 +4,7 @@ import com.sun.util.InputStringConvert;
 
 import java.util.Arrays;
 
-public class No80_RemoveDuplicates_Medium {
+public class No80_RmDuplicatesInSortedArray2_Medium {
     /**
      * 题目：给定一个有序数组 nums ，请 原地 删除重复出现的元素，使得出现次数超过两次的元素只出现两次 ，返回删除后数组的新长度。
      * 思路：用一个指针 end 标识当前精简数组的最后一个元素位置，迭代过程中不断使用下一个不同数字来覆盖上一个多出来的部分；

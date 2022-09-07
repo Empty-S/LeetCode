@@ -4,7 +4,7 @@ import com.sun.util.InputStringConvert;
 
 import java.util.Arrays;
 
-public class No81_SearchInRotatedArrayII_Medium {
+public class No81_SearchInRotatedArray2_Medium {
     /**
      * 题目：与 No.33类似，区别在于 No.33 中数组元素不重复，本题数组元素可重复
      * 思路：核心仍然是找到原始数组的起始位置，通过顺序 + 二分查找的方式找到 start

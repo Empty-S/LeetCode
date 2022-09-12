@@ -5,6 +5,9 @@ import java.util.Arrays;
 public class InputStringConvert {
 
     public static int[] stringToIntArray(String str) {
+        if (str.equals("[]")) {
+            return new int[0];
+        }
         String[] numArr = str.split(",");
         int[] nums = new int[numArr.length];
         for (int i = 0; i < numArr.length; i++) {
@@ -14,6 +17,9 @@ public class InputStringConvert {
     }
 
     public static int[][] stringToIntMatrix(String str) {
+        if (str.equals("[[]]")) {
+            return new int[0][0];
+        }
         String[] row = str.split("],\\[");
         int colLen = row[0].split(",").length;
         int[][] matrix = new int[row.length][colLen];
@@ -27,6 +33,9 @@ public class InputStringConvert {
     }
 
     public static char[][] stringToCharMatrix(String str) {
+        if (str.equals("[[]]")) {
+            return new char[0][0];
+        }
         String[] row = str.split("],\\[");
         int colLen = row[0].split(",").length;
         char[][] matrix = new char[row.length][colLen];
@@ -42,6 +51,8 @@ public class InputStringConvert {
     }
 
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(stringToIntArray("[]")));
+        System.out.println(Arrays.deepToString(stringToIntMatrix("[[]]")));
         System.out.println(Arrays.deepToString(stringToIntMatrix("[[1,2,3,4],[5,0,7,8],[0,10,11,12],[13,14,15,0]]")));
     }
 }
